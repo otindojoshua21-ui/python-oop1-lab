@@ -1,12 +1,20 @@
 #!/usr/bin/env python3
 
 class Coffee:
-    def __init__(self, name, price, size):
-        self.name = name
-        self.price = price
+    def __init__(self, size, price):
         self.size = size
-        self.total_tips = 0.0
+        self.price = price
 
-    def tip(self, amount):
-        self.total_tips += amount
-        return f"Thank you for the ${amount:.2f} tip! Total tips: ${self.total_tips:.2f}."
+    @property
+    def size(self):
+        return self._size
+
+    @size.setter
+    def size(self, size):
+        if size not in ["Small", "Medium", "Large"]:
+            print("size must be Small, Medium, or Large")
+        self._size = size
+
+    def tip(self):
+        self.price += 1
+        print("This coffee is great, here’s a tip!")

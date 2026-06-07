@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 
 class Book:
-    def __init__(self, title, author, pages):
+    def __init__(self, title, page_count):
         self.title = title
-        self.author = author
-        self.pages = pages
-        self.current_page = 1
+        self.page_count = page_count
+
+    @property
+    def page_count(self):
+        return self._page_count
+
+    @page_count.setter
+    def page_count(self, page_count):
+        if not isinstance(page_count, int):
+            print("page_count must be an integer")
+        self._page_count = page_count
 
     def turn_page(self):
-        if self.current_page < self.pages:
-            self.current_page += 1
-            return f"Turned to page {self.current_page} of '{self.title}'."
-        else:
-            return f"You have reached the end of '{self.title}'."
+        print("Flipping the page...wow, you read fast!")
